@@ -5,12 +5,12 @@ COPY . /app
 RUN mvn clean package -DskipTests
 
 # Stage 2: Production image
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jre-alpine
 # Set working directory
 WORKDIR /app
-# Copy built jar from the builder stage or your local build output
+# Copy built jar from the builder stage
 COPY --from=builder /app/target/united-airlines-api-1.0.0.jar app.jar
-# Expose port (optional, for documentation only)
+# Expose port
 EXPOSE 8080
 # Run the application
-ENTRYPOINT ["sh", "-c", "java -jar app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
