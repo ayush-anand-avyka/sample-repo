@@ -15,7 +15,9 @@ spec:
         app: united-airlines
     spec:
       containers:
-        - name: united-airlines
+          - name: united-airlines
+  securityContext:
+    allowPrivilegeEscalation: false
           image: "united-airlines:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
